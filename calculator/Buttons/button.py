@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 
 from calculator.Operations.operation import Operation
+
 class Calculator:
     def __init__(self):
         self.root = Tk()
@@ -115,30 +116,30 @@ class Calculator:
         boton_igual = self.style_button_equal()
         self.label()
         
-        boton_0 = ttk.Button(self.main_frame, text = "0", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("0", self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_1 = ttk.Button(self.main_frame, text = "1", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("1", self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_2 = ttk.Button(self.main_frame, text = "2", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("2", self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_3 = ttk.Button(self.main_frame, text = "3", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("3", self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada,boton_punto, boton_resultado))
-        boton_4 = ttk.Button(self.main_frame, text = "4", style = "botones_numericos.TButton",command =  lambda:self.operation.insert_values("4", self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_5 = ttk.Button(self.main_frame, text = "5", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("5", self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_6 = ttk.Button(self.main_frame, text = "6", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("6", self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_7 = ttk.Button(self.main_frame, text = "7", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("7", self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_8 = ttk.Button(self.main_frame, text = "8", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("8", self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_9 = ttk.Button(self.main_frame, text = "9", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("9", self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_0 = ttk.Button(self.main_frame, text = "0", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("0", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_1 = ttk.Button(self.main_frame, text = "1", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("1", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_2 = ttk.Button(self.main_frame, text = "2", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("2", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_3 = ttk.Button(self.main_frame, text = "3", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("3", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_4 = ttk.Button(self.main_frame, text = "4", style = "botones_numericos.TButton",command =  lambda:self.operation.insert_values("4", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_5 = ttk.Button(self.main_frame, text = "5", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("5", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_6 = ttk.Button(self.main_frame, text = "6", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("6", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_7 = ttk.Button(self.main_frame, text = "7", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("7", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_8 = ttk.Button(self.main_frame, text = "8", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("8", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_9 = ttk.Button(self.main_frame, text = "9", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("9", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
 
         del_buttons = ttk.Button(self.main_frame, text = chr(9003), style = "botones_borrar.TButton")
         boton_borrar_todo = ttk.Button(self.main_frame, text = "C", style = "botones_borrar.TButton")
         boton_parentesis_1 = ttk.Button(self.main_frame, text = "(", style = "botones_restantes.TButton")
         boton_parentesis_2 = ttk.Button(self.main_frame, text = ")", style = "botones_restantes.TButton")
-        boton_punto = ttk.Button(self.main_frame, text = ".", style = "botones_restantes.TButton")
+        boton_punto = ttk.Button(self.main_frame, text = ".", style = "botones_restantes.TButton", command = lambda:self.operation.insert_values(".", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
 
         boton_raiz_cuadrada = ttk.Button(self.main_frame, text = chr(8730), style = "botones_restantes.TButton")
         boton_resultado = ttk.Button(self.main_frame, text = chr(61), style = "boton_igual.TButton")
 
-        boton_suma = ttk.Button(self.main_frame, text = chr(43), style = "botones_restantes.TButton")
-        boton_resta = ttk.Button(self.main_frame, text = chr(8722), style = "botones_restantes.TButton")
-        boton_multiplicacion = ttk.Button(self.main_frame, text = chr(215), style = "botones_restantes.TButton")
-        boton_division = ttk.Button(self.main_frame, text = chr(247), style = "botones_restantes.TButton")
+        boton_suma = ttk.Button(self.main_frame, text = chr(43), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("+", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_resta = ttk.Button(self.main_frame, text = chr(8722), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("-", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_multiplicacion = ttk.Button(self.main_frame, text = chr(215), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("*", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
+        boton_division = ttk.Button(self.main_frame, text = chr(247), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("/", self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
 
         self.configure_buttons(boton_punto, boton_resultado, boton_raiz_cuadrada, boton_suma, boton_multiplicacion, boton_division)
         self.firts_row_button(boton_parentesis_1, boton_parentesis_2, boton_borrar_todo, del_buttons)

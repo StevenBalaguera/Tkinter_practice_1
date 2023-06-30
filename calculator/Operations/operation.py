@@ -16,7 +16,7 @@ class Operation:
         boton_multiplicacion.config(state = "Normal")
         boton_division.config(state = "Normal")
 
-    def insert_values(self, tecla, entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado):
+    def insert_values(self, tecla, entrada_1, entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado):
         boton_punto.config(state = "Normal")
         boton_resultado.config(state = "Normal")
         if tecla.isdigit():
@@ -26,15 +26,29 @@ class Operation:
             self.operation_button(boton_suma, boton_resta, boton_multiplicacion, boton_division)
             boton_raiz_cuadrada.config(state = "Normal")
             entrada_2.set(entrada_2.get() + tecla)
+
         for point in range(0, len(entrada_2.get())):
             if entrada_2.get()[point] == ".":
                 self.point_cont += 1
         if self.point_cont == 1:
+            self.inactive_button_operation(boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada)
             boton_punto.config(state = "disabled")
         self.point_cont = 0
         self.cont = 0 
-
         if tecla == ".":
             entrada_2.set(entrada_2.get() + tecla)
             boton_punto.config(state = "disabled")
             self.inactive_button_operation(boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada)
+        
+        if tecla == "*" or tecla == "/" or tecla == "+" or tecla == "-":
+            boton_resultado.config(state = "disabled")
+            self.inactive_button_operation(boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada)
+            if tecla == "*":
+                entrada_1.set(entrada_1.get() + entrada_2.get() + "*")
+            elif tecla == "/":
+                entrada_1.set(entrada_1.get() + entrada_2.get() + "/")
+            elif tecla == "+":
+                entrada_1.set(entrada_1.get() + entrada_2.get() + "+")
+            elif tecla == "-":
+                entrada_1.set(entrada_1.get() + entrada_2.get() + "-")
+            entrada_2.set('')
