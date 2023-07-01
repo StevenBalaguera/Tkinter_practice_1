@@ -30,6 +30,31 @@ class Calculator:
         self.main_frame.rowconfigure(6, weight = 1)
         self.main_frame.rowconfigure(7, weight = 1)
 
+        self.button_0 = ttk.Button(self.main_frame, text = "0", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("0", self))
+        self.button_1 = ttk.Button(self.main_frame, text = "1", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("1", self))
+        self.button_2 = ttk.Button(self.main_frame, text = "2", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("2", self))
+        self.button_3 = ttk.Button(self.main_frame, text = "3", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("3", self))
+        self.button_4 = ttk.Button(self.main_frame, text = "4", style = "botones_numericos.TButton",command =  lambda:self.operation.insert_values("4", self))
+        self.button_5 = ttk.Button(self.main_frame, text = "5", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("5", self))
+        self.button_6 = ttk.Button(self.main_frame, text = "6", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("6", self))
+        self.button_7 = ttk.Button(self.main_frame, text = "7", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("7", self))
+        self.button_8 = ttk.Button(self.main_frame, text = "8", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("8", self))
+        self.button_9 = ttk.Button(self.main_frame, text = "9", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("9", self))
+
+        self.del_button = ttk.Button(self.main_frame, text = chr(9003), style = "botones_borrar.TButton")
+        self.del_all_button = ttk.Button(self.main_frame, text = "C", style = "botones_borrar.TButton")
+        self.bracket_button_1 = ttk.Button(self.main_frame, text = "(", style = "botones_restantes.TButton")
+        self.bracket_button_2 = ttk.Button(self.main_frame, text = ")", style = "botones_restantes.TButton")
+        self.point_button = ttk.Button(self.main_frame, text = ".", style = "botones_restantes.TButton", command = lambda:self.operation.insert_values(".", self))
+
+        self.square_root_button = ttk.Button(self.main_frame, text = chr(8730), style = "botones_restantes.TButton")
+        self.resoult_button = ttk.Button(self.main_frame, text = chr(61), style = "boton_igual.TButton", command = lambda:self.operation.insert_values("=", self))
+
+        self.sum_button = ttk.Button(self.main_frame, text = chr(43), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("+", self))
+        self.rest_button = ttk.Button(self.main_frame, text = chr(8722), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("-", self))
+        self.mult_button = ttk.Button(self.main_frame, text = chr(215), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("*", self))
+        self.divition_button = ttk.Button(self.main_frame, text = chr(247), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("/", self))
+
         self.entrada_1 = StringVar()
         self.entrada_2 = StringVar()
         self.operation = Operation()
@@ -70,44 +95,44 @@ class Calculator:
         boton_igual.map('boton_igual.TButton', foreground = [("active", "#70FF8B")], background = [("active", "#DADADC")])
         return boton_igual
     
-    def firts_row_button(self, boton_parentesis_1, boton_parentesis_2, boton_borrar_todo, del_buttons):
-        boton_parentesis_1.grid(row = 2, column = 0, sticky = (W,N,E,S))
-        boton_parentesis_2.grid(row = 2, column = 1, sticky = (W,N,E,S))
-        boton_borrar_todo.grid(row = 2, column = 2, sticky = (W,N,E,S))
-        del_buttons.grid(row = 2, column = 3, sticky = (W,N,E,S))
+    def firts_row_button(self):
+        self.bracket_button_1.grid(row = 2, column = 0, sticky = (W,N,E,S))
+        self.bracket_button_2.grid(row = 2, column = 1, sticky = (W,N,E,S))
+        self.del_all_button.grid(row = 2, column = 2, sticky = (W,N,E,S))
+        self.del_button.grid(row = 2, column = 3, sticky = (W,N,E,S))
 
-    def second_row_button(self, boton_7, boton_8, boton_9, boton_division):
-        boton_7.grid(column = 0, row = 3, sticky = (W, N, E, S))
-        boton_8.grid(column = 1, row = 3, sticky = (W, N, E, S))
-        boton_9.grid(column = 2, row = 3, sticky = (W, N, E, S))
-        boton_division.grid(column = 3, row = 3, sticky = (W, N, E, S))
+    def second_row_button(self):
+        self.button_7.grid(column = 0, row = 3, sticky = (W, N, E, S))
+        self.button_8.grid(column = 1, row = 3, sticky = (W, N, E, S))
+        self.button_9.grid(column = 2, row = 3, sticky = (W, N, E, S))
+        self.divition_button.grid(column = 3, row = 3, sticky = (W, N, E, S))
 
-    def third_row_button(self, boton_4, boton_5, boton_6, boton_multiplicacion):
-        boton_4.grid(column = 0, row = 4, sticky = (W, N, E, S))
-        boton_5.grid(column = 1, row = 4, sticky = (W, N, E, S))
-        boton_6.grid(column = 2, row = 4, sticky = (W, N, E, S))
-        boton_multiplicacion.grid(column = 3, row = 4, sticky = (W, N, E, S))
+    def third_row_button(self):
+        self.button_4.grid(column = 0, row = 4, sticky = (W, N, E, S))
+        self.button_5.grid(column = 1, row = 4, sticky = (W, N, E, S))
+        self.button_6.grid(column = 2, row = 4, sticky = (W, N, E, S))
+        self.mult_button.grid(column = 3, row = 4, sticky = (W, N, E, S))
 
-    def four_row_button(self, boton_1, boton_2, boton_3, boton_suma):
-        boton_1.grid(column = 0, row = 5, sticky = (W, N, E, S))
-        boton_2.grid(column = 1, row = 5, sticky = (W, N, E, S))
-        boton_3.grid(column = 2, row = 5, sticky = (W, N, E, S))
-        boton_suma.grid(column = 3, row = 5, sticky = (W, N, E, S))
+    def four_row_button(self):
+        self.button_1.grid(column = 0, row = 5, sticky = (W, N, E, S))
+        self.button_2.grid(column = 1, row = 5, sticky = (W, N, E, S))
+        self.button_3.grid(column = 2, row = 5, sticky = (W, N, E, S))
+        self.sum_button.grid(column = 3, row = 5, sticky = (W, N, E, S))
 
-    def five_row_button(self, boton_0, boton_punto, boton_resta, boton_resultado, boton_raiz_cuadrada):
-        boton_0.grid(row = 6, column = 0, columnspan = 2, sticky = (W, N, E, S))
-        boton_punto.grid(row = 6, column = 2, sticky = (W, N, E, S))
-        boton_resta.grid(row = 6,column = 3, sticky = (W, N, E, S))
-        boton_resultado.grid(row = 7, column = 0, columnspan = 3, sticky = (W, N, E, S))
-        boton_raiz_cuadrada.grid(row = 7, column = 3 , sticky = (W, N, E, S))
+    def five_row_button(self):
+        self.button_0.grid(row = 6, column = 0, columnspan = 2, sticky = (W, N, E, S))
+        self.point_button.grid(row = 6, column = 2, sticky = (W, N, E, S))
+        self.rest_button.grid(row = 6,column = 3, sticky = (W, N, E, S))
+        self.resoult_button.grid(row = 7, column = 0, columnspan = 3, sticky = (W, N, E, S))
+        self.square_root_button.grid(row = 7, column = 3 , sticky = (W, N, E, S))
     
-    def configure_buttons(self, boton_punto, boton_resultado, boton_raiz_cuadrada, boton_suma, boton_multiplicacion, boton_division):
-        boton_punto.config(state = "disabled")
-        boton_resultado.config(state = "disabled")
-        boton_raiz_cuadrada.config(state = "disabled")
-        boton_suma.config(state = "disabled")
-        boton_multiplicacion.config(state = "disabled")
-        boton_division.config(state = "disabled")
+    def configure_buttons(self):
+        self.point_button.config(state = "disabled")
+        self.resoult_button.config(state = "disabled")
+        self.square_root_button.config(state = "disabled")
+        self.sum_button.config(state = "disabled")
+        self.mult_button.config(state = "disabled")
+        self.divition_button.config(state = "disabled")
 
     def main_buttons(self):
         botones_numericos = self.style_numeric_button()
@@ -115,38 +140,13 @@ class Calculator:
         botones_restantes = self.style_restant_buttons()
         boton_igual = self.style_button_equal()
         self.label()
-        
-        boton_0 = ttk.Button(self.main_frame, text = "0", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("0", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_1 = ttk.Button(self.main_frame, text = "1", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("1", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_2 = ttk.Button(self.main_frame, text = "2", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("2", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_3 = ttk.Button(self.main_frame, text = "3", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("3", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_4 = ttk.Button(self.main_frame, text = "4", style = "botones_numericos.TButton",command =  lambda:self.operation.insert_values("4", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_5 = ttk.Button(self.main_frame, text = "5", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("5", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_6 = ttk.Button(self.main_frame, text = "6", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("6", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_7 = ttk.Button(self.main_frame, text = "7", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("7", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_8 = ttk.Button(self.main_frame, text = "8", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("8", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_9 = ttk.Button(self.main_frame, text = "9", style = "botones_numericos.TButton", command = lambda:self.operation.insert_values("9", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
 
-        del_buttons = ttk.Button(self.main_frame, text = chr(9003), style = "botones_borrar.TButton")
-        boton_borrar_todo = ttk.Button(self.main_frame, text = "C", style = "botones_borrar.TButton")
-        boton_parentesis_1 = ttk.Button(self.main_frame, text = "(", style = "botones_restantes.TButton")
-        boton_parentesis_2 = ttk.Button(self.main_frame, text = ")", style = "botones_restantes.TButton")
-        boton_punto = ttk.Button(self.main_frame, text = ".", style = "botones_restantes.TButton", command = lambda:self.operation.insert_values(".", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-
-        boton_raiz_cuadrada = ttk.Button(self.main_frame, text = chr(8730), style = "botones_restantes.TButton")
-        boton_resultado = ttk.Button(self.main_frame, text = chr(61), style = "boton_igual.TButton", command = lambda:self.operation.insert_values("=", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-
-        boton_suma = ttk.Button(self.main_frame, text = chr(43), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("+", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_resta = ttk.Button(self.main_frame, text = chr(8722), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("-", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_multiplicacion = ttk.Button(self.main_frame, text = chr(215), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("*", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-        boton_division = ttk.Button(self.main_frame, text = chr(247), style = "botones_restantes.TButton", command = lambda:self.operation.insert_values("/", boton_parentesis_1, boton_parentesis_2, del_buttons, boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, self.entrada_1, self.entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado))
-
-        self.configure_buttons(boton_punto, boton_resultado, boton_raiz_cuadrada, boton_suma, boton_multiplicacion, boton_division)
-        self.firts_row_button(boton_parentesis_1, boton_parentesis_2, boton_borrar_todo, del_buttons)
-        self.second_row_button(boton_7, boton_8, boton_9, boton_division)
-        self.third_row_button(boton_4, boton_5, boton_6, boton_multiplicacion)
-        self.four_row_button(boton_1, boton_2, boton_3, boton_suma)
-        self.five_row_button( boton_0, boton_punto, boton_resta, boton_resultado, boton_raiz_cuadrada)
+        self.configure_buttons()
+        self.firts_row_button()
+        self.second_row_button()
+        self.third_row_button()
+        self.four_row_button()
+        self.five_row_button()
 
     def button_configure(self):
         for child in self.main_frame.winfo_children():

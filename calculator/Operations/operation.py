@@ -3,103 +3,104 @@ class Operation:
         self.cont = 0
         self.point_cont = 0
 
-    def inactive_buttons(self, button_0, button_1, button_2, button_3, button_4, button_5, button_6, button_7, button_8, button_9, sum_button, rest_button, mult_button, divition_button, square_root_button, del_buton, resoult_button, bracket_button_1, bracket_button_2, boton_point):
-        self.inactive_button_operation(sum_button, rest_button, mult_button, divition_button, square_root_button)
-        button_0.config(state = "disabled")
-        button_1.config(state = "disabled")        
-        button_2.config(state = "disabled")
-        button_3.config(state = "disabled")
-        button_4.config(state = "disabled")
-        button_5.config(state = "disabled")
-        button_6.config(state = "disabled")
-        button_7.config(state = "disabled")
-        button_8.config(state = "disabled")
-        button_9.config(state = "disabled")
-        del_buton.config(state = "disabled")
-        resoult_button.config(state = "disabled")
-        bracket_button_1.config(state = "disabled")
-        bracket_button_2.config(state = "disabled")
-        boton_point.config(state = "disabled")
+    def inactive_buttons(self, calculator):
+        self.inactive_button_operation(calculator)
+        calculator.button_0.config(state = "disabled")
+        calculator.button_1.config(state = "disabled")        
+        calculator.button_2.config(state = "disabled")
+        calculator.button_3.config(state = "disabled")
+        calculator.button_4.config(state = "disabled")
+        calculator.button_5.config(state = "disabled")
+        calculator.button_6.config(state = "disabled")
+        calculator.button_7.config(state = "disabled")
+        calculator.button_8.config(state = "disabled")
+        calculator.button_9.config(state = "disabled")
+        calculator.del_button.config(state = "disabled")
+        calculator.resoult_button.config(state = "disabled")
+        calculator.bracket_button_1.config(state = "disabled")
+        calculator.bracket_button_2.config(state = "disabled")
+        calculator.point_button.config(state = "disabled")
 
-    def inactive_button_operation(self, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada):
-        boton_suma.config(state = "disabled")
-        boton_resta.config(state = "disabled")
-        boton_multiplicacion.config(state = "disabled")
-        boton_division.config(state = "disabled")
-        boton_raiz_cuadrada.config(state = "disabled")
+    def inactive_button_operation(self, calculator):
+        calculator.sum_button.config(state = "disabled")
+        calculator.rest_button.config(state = "disabled")
+        calculator.mult_button.config(state = "disabled")
+        calculator.divition_button.config(state = "disabled")
+        calculator.square_root_button.config(state = "disabled")
 
-    def operation_button(self, boton_suma, boton_resta, boton_multiplicacion, boton_division):
-        boton_suma.config(state = "Normal")
-        boton_resta.config(state = "Normal")
-        boton_multiplicacion.config(state = "Normal")
-        boton_division.config(state = "Normal")
+    def operation_button(self, calculator):
+        calculator.sum_button.config(state = "Normal")
+        calculator.rest_button.config(state = "Normal")
+        calculator.mult_button.config(state = "Normal")
+        calculator.divition_button.config(state = "Normal")
 
-    def insert_values(self, tecla, boton_parentesis_1, boton_parentesis_2, del_buton,  boton_0, boton_1, boton_2, boton_3, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, entrada_1, entrada_2, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, boton_punto, boton_resultado):
-        boton_punto.config(state = "Normal")
-        boton_resultado.config(state = "Normal")
+    def insert_values(self, tecla, calculator):
+        calculator.point_button.config(state = "Normal")
+        calculator.resoult_button.config(state = "Normal")
         if tecla.isdigit():
             self.cont += 1
 
         if self.cont >= 1 or tecla == "(" or tecla == ")":
-            self.operation_button(boton_suma, boton_resta, boton_multiplicacion, boton_division)
-            boton_raiz_cuadrada.config(state = "Normal")
-            entrada_2.set(entrada_2.get() + tecla)
+            self.operation_button(calculator)
+            calculator.square_root_button.config(state = "Normal")
+            calculator.entrada_2.set(calculator.entrada_2.get() + tecla)
             self.cont = 0
 
-        for point in range(0, len(entrada_2.get())):
-            if entrada_2.get()[point] == ".":
+        for point in range(0, len(calculator.entrada_2.get())):
+            if calculator.entrada_2.get()[point] == ".":
                 self.point_cont += 1
         if self.point_cont == 1:
-            boton_punto.config(state = "disabled")
+            calculator.point_button.config(state = "disabled")
         self.point_cont = 0
      
         if tecla == ".":
-            entrada_2.set(entrada_2.get() + tecla)
-            boton_punto.config(state = "disabled")
-            self.inactive_button_operation(boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada)
+            calculator.entrada_2.set(calculator.entrada_2.get() + tecla)
+            calculator.point_button.config(state = "disabled")
+            self.inactive_button_operation(calculator)
         
         if tecla == "*" or tecla == "/" or tecla == "+" or tecla == "-":
-            boton_resultado.config(state = "disabled")
-            self.inactive_button_operation(boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada)
+            calculator.point_button.config(state = "disabled")
+            calculator.resoult_button.config(state = "disabled")
+            self.inactive_button_operation(calculator)
             if tecla == "*":
-                entrada_1.set(entrada_1.get() + entrada_2.get() + "*")
+                calculator.entrada_1.set(calculator.entrada_1.get() + calculator.entrada_2.get() + "*")
             elif tecla == "/":
-                entrada_1.set(entrada_1.get() + entrada_2.get() + "/")
+                calculator.entrada_1.set(calculator.entrada_1.get() + calculator.entrada_2.get() + "/")
             elif tecla == "+":
-                entrada_1.set(entrada_1.get() + entrada_2.get() + "+")
+                calculator.entrada_1.set(calculator.entrada_1.get() + calculator.entrada_2.get() + "+")
             elif tecla == "-":
-                entrada_1.set(entrada_1.get() + entrada_2.get() + "-")
-            entrada_2.set('')
+                calculator.entrada_1.set(calculator.entrada_1.get() + calculator.entrada_2.get() + "-")
+            calculator.entrada_2.set('')
 
         if tecla == "=":
             open_bracket_counter = 0
             close_bracket_counter = 0
-            boton_resultado.config(state = "disabled")
-            entrada_1.set(entrada_1.get() + entrada_2.get())
+            calculator.resoult_button.config(state = "disabled")
+            calculator.entrada_1.set(calculator.entrada_1.get() + calculator.entrada_2.get())
 
-            for character in range(0, len(entrada_1.get())):
-                if entrada_1.get()[character] == "(":
+            for character in range(0, len(calculator.entrada_1.get())):
+                if calculator.entrada_1.get()[character] == "(":
                     open_bracket_counter += 1
-                elif entrada_1.get()[character] == ")":
+                elif calculator.entrada_1.get()[character] == ")":
                     close_bracket_counter += 1
-            if entrada_1.get()[0] == "*" or entrada_1.get()[0] == "/":
-                entrada_1.set("0" + entrada_1.get())
+            if calculator.entrada_1.get()[0] == "*" or calculator.entrada_1.get()[0] == "/":
+                calculator.entrada_1.set("0" + calculator.entrada_1.get())
 
             try: 
-                resultado = eval(entrada_1.get())
-                entrada_2.set(resultado)
-                entrada_1.set("")
+                resultado = eval(calculator.entrada_1.get())
+                calculator.entrada_2.set(resultado)
+                calculator.entrada_1.set("")
 
             except SyntaxError:
-                entrada_2.set("Error")
-                self.inactive_buttons(boton_0, boton_1, boton_2, boton_3, boton_4, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, del_buton, boton_parentesis_1, boton_parentesis_2, boton_punto)
+                calculator.entrada_2.set("Error")
+                self.inactive_buttons(calculator)
 
             except ZeroDivisionError:
-                entrada_2.set("Error")
-                self.inactive_buttons(boton_0, boton_1, boton_2, boton_3, boton_4, boton_4, boton_5, boton_6, boton_7, boton_8, boton_9, boton_suma, boton_resta, boton_multiplicacion, boton_division, boton_raiz_cuadrada, del_buton, boton_parentesis_1, boton_parentesis_2, boton_punto)
+                calculator.entrada_2.set("Error")
+                self.inactive_buttons(calculator)
 
-            if entrada_2.get().isdigit() == False:
-                boton_punto.config(state = "disabled")
+            if calculator.entrada_2.get().isdigit() == False:
+                calculator.point_button.config(state = "disabled")
 
-            elif entrada_2.get().isdigit():
-                boton_punto.config(state = "Normal")
+            elif calculator.entrada_2.get().isdigit():
+                calculator.point_button.config(state = "Normal")
