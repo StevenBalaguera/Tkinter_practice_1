@@ -102,7 +102,7 @@ class Calculator:
         botones_restantes.map('botones_restantes.TButton', background = [("active", "#858585")])
         return botones_restantes
     
-    def configure_buttons(self):
+    def button_state_setting(self):
         self.point_button.config(state = "disabled")
         self.resoult_button.config(state = "disabled")
         self.square_root_button.config(state = "disabled")
@@ -117,7 +117,7 @@ class Calculator:
         self.style_button_equal()
         self.label()
 
-        self.configure_buttons()
+        self.button_state_setting()
         self.grid_buttons.firts_row_buttons(self)
         self.grid_buttons.second_row_buttons(self)
         self.grid_buttons.third_row_buttons(self)
