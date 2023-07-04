@@ -5,7 +5,7 @@ class ButtonState:
         self.calculator = calculator
 
     def inactive_buttons(self):
-        self.inactive_button_operation(self.calculator)
+        self.inactive_button_operation()
         self.calculator.button_0.config(state = "disabled")
         self.calculator.button_1.config(state = "disabled")        
         self.calculator.button_2.config(state = "disabled")
@@ -24,7 +24,7 @@ class ButtonState:
         self.calculator.rest_button.config(state = "disabled")
 
     def active_buttons(self):
-        self.operation_button(self.calculator)
+        self.operation_button()
         self.calculator.button_0.config(state = "Normal")
         self.calculator.button_1.config(state = "Normal")        
         self.calculator.button_2.config(state = "Normal")
@@ -77,5 +77,4 @@ class ButtonState:
 
     def active_square_root_button(self):
         self.calculator.square_root_button.config(state = "Normal")
-
 
