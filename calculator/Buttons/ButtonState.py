@@ -78,3 +78,16 @@ class ButtonState:
     def active_square_root_button(self):
         self.calculator.square_root_button.config(state = "Normal")
 
+    def inactive_open_brackets(self):
+        self.calculator.bracket_button_1.config(state = "disabled")
+
+    def inactive_closed_brackets(self):
+        self.calculator.bracket_button_2.config(state = "disabled")
+
+    def active_open_brackets(self):
+        self.calculator.bracket_button_1.config(state = "Normal")
+
+    def active_closed_brackets(self):
+      self.calculator.bracket_button_2.config(state = "Normal")  
+        
+
