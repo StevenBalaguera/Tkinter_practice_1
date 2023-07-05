@@ -3,16 +3,20 @@ from tkinter import ttk
 
 from calculator.Buttons.Button import Buttons
 from calculator.Buttons.grid_buttons import GridButtons
+from calculator.background.Background import BackGround
 
 class Calculator:
     def __init__(self):
         self.root = self.root()
         self.main_frame = self.frame_configure()
         self.style_frame = self.frame_style()
+        self.style_label_1 = self.label_style_1()
+        self.style_label_2 = self.label_style_2() 
         self.entrada_1 = StringVar()
         self.entrada_2 = StringVar()
         self.buttons = Buttons(self) 
         self.grid_buttons = GridButtons(self)
+        self.background = BackGround(self)
         self.button_0 = self.buttons.button_0()
         self.button_1 = self.buttons.button_1()
         self.button_2 = self.buttons.button_2()
@@ -34,6 +38,10 @@ class Calculator:
         self.divition_button = self.buttons.divition_button()
         self.square_root_button = self.buttons.square_root_button()
         self.resoult_button = self.buttons.resoult_button()
+        self.numeric_buttons = self.style_numeric_button()
+        self.style_del_buttons = self.style_del_button()
+        self.style_equal_button = self.style_button_equal()
+        self.restant_buttons = self.style_restant_buttons()
 
     def root(self):
         root = Tk()
@@ -67,13 +75,20 @@ class Calculator:
         estilos_frame.theme_use("clam")
         estilos_frame.configure('mainFrame.TFrame', background = "#DBDBDB")
         return estilos_frame
+    
+    def label_style_1(self):
+        label_style_1 = ttk.Style()
+        label_style_1.configure('label1.TLabel', font = "arial 15", anchor = "e")
+        return label_style_1
+
+    def label_style_2(self):
+        label_style_2 = ttk.Style()
+        label_style_2.configure('label2.TLabel', font = "arial 40", anchor = "e")
+        return label_style_2
                 
     def label(self):
-        estilo_label_1 = ttk.Style()
-        estilos_label_2 = ttk.Style()
-        estilo_label_1.configure('label1.TLabel', font = "arial 15", anchor = "e")
-        estilos_label_2.configure('label2.TLabel', font = "arial 40", anchor = "e")
-
+        self.label_style_1()
+        self.label_style_2()
         label_entrada_1 = ttk.Label(self.main_frame, textvariable = self.entrada_1, style = "label1.TLabel")
         label_entrada_2 = ttk.Label(self.main_frame, textvariable = self.entrada_2, style = "label2.TLabel")
         
@@ -81,28 +96,28 @@ class Calculator:
         label_entrada_2.grid(row = 1, column = 0, columnspan = 4, sticky = (W, N, E, S))
     
     def style_numeric_button(self):
-        botones_numericos = ttk.Style()
-        botones_numericos.configure('botones_numericos.TButton', width = 5, font = "arial 22", relief = "flat", background = "#FFFFFF")
-        botones_numericos.map('botones_numericos.TButton', background = [("active","#EAEEE0")])
-        return botones_numericos
+        numeric_buttons = ttk.Style()
+        numeric_buttons.configure('botones_numericos.TButton', width = 5, font = "arial 22", relief = "flat", background = "#FFFFFF")
+        numeric_buttons.map('botones_numericos.TButton', background = [("active","#EAEEE0")])
+        return numeric_buttons
     
     def style_del_button(self):
-        botones_borrar = ttk.Style()
-        botones_borrar.configure('botones_borrar.TButton', width = 5, font = "arial 22", relief = "flat", background = "#CECECE")
-        botones_borrar.map('botones_borrar.TButton', foreground = [("active","#FF0000")], background =[("active","#858585")])
-        return botones_borrar
+        del_button = ttk.Style()
+        del_button.configure('botones_borrar.TButton', width = 5, font = "arial 22", relief = "flat", background = "#CECECE")
+        del_button.map('botones_borrar.TButton', foreground = [("active","#FF0000")], background =[("active","#858585")])
+        return del_button
     
     def style_button_equal(self):
-        boton_igual = ttk.Style()
-        boton_igual.configure('boton_igual.TButton',width = 5, font = "arial 22", relief = "flat", background = "#CECECE")
-        boton_igual.map('boton_igual.TButton', foreground = [("active", "#70FF8B")], background = [("active", "#DADADC")])
-        return boton_igual
+        equal_button = ttk.Style()
+        equal_button.configure('boton_igual.TButton',width = 5, font = "arial 22", relief = "flat", background = "#CECECE")
+        equal_button.map('boton_igual.TButton', foreground = [("active", "#70FF8B")], background = [("active", "#DADADC")])
+        return equal_button
     
     def style_restant_buttons(self):
-        botones_restantes = ttk.Style()
-        botones_restantes.configure('botones_restantes.TButton', width = 5, font = "arial 22", relief = "flat", background = "#CECECE")
-        botones_restantes.map('botones_restantes.TButton', background = [("active", "#858585")])
-        return botones_restantes
+        restant_buttons = ttk.Style()
+        restant_buttons.configure('botones_restantes.TButton', width = 5, font = "arial 22", relief = "flat", background = "#CECECE")
+        restant_buttons.map('botones_restantes.TButton', background = [("active", "#858585")])
+        return restant_buttons
     
     def button_state_setting(self):
         self.point_button.config(state = "disabled")
@@ -125,6 +140,12 @@ class Calculator:
         self.grid_buttons.third_row_buttons()
         self.grid_buttons.four_row_buttons()
         self.grid_buttons.five_row_buttons()
+
+        self.bind_background()
+
+    def bind_background(self):
+        self.root.bind('<KeyPress-o>', self.background.dark_background)
+        self.root.bind('<KeyPress-c>', self.background.light_background)
 
     def button_configure(self):
         for child in self.main_frame.winfo_children():
