@@ -85,38 +85,28 @@ class Operation:
                 if self.calculator.entrada_1.get()[character] == "(":
                     open_bracket_counter += 1
                 elif self.calculator.entrada_1.get()[character] == ")":
-                    close_bracket_counter += 1   
+                    close_bracket_counter += 1  
+                    hola = len(self.calculator.entrada_1.get()[character]) 
                 elif self.calculator.entrada_1.get()[character].isdigit():
                     numeric_cont += 1
-            self.brackets_eval(open_bracket_counter, close_bracket_counter)
-            if open_bracket_counter == 1 and close_bracket_counter == 1 and numeric_cont == 0:
-                self.calculator.entrada_1.set("Error")  
-            elif open_bracket_counter == 1 and close_bracket_counter == 0 and numeric_cont == 0:
-                self.calculator.entrada_1.set("Error")
 
-            if self.calculator.entrada_1.get()[0].isdigit() and self.calculator.entrada_1.get()[1] == "(" and self.calculator.entrada_1.get()[2].isdigit() and self.calculator.entrada_1.get()[3] == ")":
-                self.calculator.entrada_1.set("Error")
-            if self.calculator.entrada_1.get()[0].isdigit() and self.calculator.entrada_1.get()[1] == "(" and self.calculator.entrada_1.get()[2].isdigit():
-                self.calculator.entrada_1.set("Error")
+            self.brackets_eval(open_bracket_counter, close_bracket_counter) 
             try: 
                 resoult = eval(self.calculator.entrada_1.get())
                 self.calculator.entrada_2.set(resoult)
                 self.calculator.entrada_1.set("")
-
             except SyntaxError:
                 self.calculator.entrada_2.set("Error")
                 self.calculator.entrada_1.set("")
                 self.button_state.inactive_buttons()
-
             except ZeroDivisionError:
                 self.calculator.entrada_2.set("Error")
                 self.calculator.entrada_1.set("")
                 self.button_state.inactive_buttons()
-
             except NameError:
-                    self.calculator.entrada_2.set("Error")
-                    self.calculator.entrada_1.set("")
-                    self.button_state.inactive_buttons()
+                self.calculator.entrada_2.set("Error")
+                self.calculator.entrada_1.set("")
+                self.button_state.inactive_buttons()
 
             if self.calculator.entrada_2.get().isdigit() == False:
                 self.button_state.inactive_point_button()
