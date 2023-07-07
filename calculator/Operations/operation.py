@@ -30,12 +30,13 @@ class Operation:
                 self.button_state.operation_button()
                 self.button_state.active_square_root_button()
                 self.button_state.resoult_button()
+                self.button_state.active_open_brackets()
+                self.button_state.active_closed_brackets()
             elif tecla == ")":
                 self.button_state.inactive_closed_brackets()
-                self.button_state.active_open_brackets()
+                self.button_state.inactive_open_brackets()
                 self.button_state.resoult_button()
                 self.button_state.operation_button()
-
             elif tecla == "(":
                 self.button_state.inactive_open_brackets()
                 self.button_state.active_closed_brackets()
@@ -73,9 +74,10 @@ class Operation:
             self.calculator.entrada_2.set('')
 
         if tecla == "=":
+            braket = 0
+            operation_cont = 0
             open_bracket_counter = 0
             close_bracket_counter = 0
-            numeric_cont = 0
             self.button_state.active_open_brackets()
             self.button_state.active_closed_brackets()
             self.button_state.resoult_button_disabled()
@@ -86,15 +88,24 @@ class Operation:
                     open_bracket_counter += 1
                 elif self.calculator.entrada_1.get()[character] == ")":
                     close_bracket_counter += 1  
-                    hola = len(self.calculator.entrada_1.get()[character]) 
-                elif self.calculator.entrada_1.get()[character].isdigit():
-                    numeric_cont += 1
 
             self.brackets_eval(open_bracket_counter, close_bracket_counter) 
             try: 
+                for character in range(0, len(self.calculator.entrada_1.get())):
+                    if self.calculator.entrada_1.get()[character] == "+":
+                        operation_cont += 1
+                    elif self.calculator.entrada_1.get()[character] == "-":
+                        operation_cont += 1                    
+                    elif self.calculator.entrada_1.get()[character] == "*":
+                        operation_cont += 1
+                    elif self.calculator.entrada_1.get()[character] == "/":
+                        operation_cont += 1
+                if operation_cont == 0:
+                    self.calculator.entrada_1.set(self.calculator.entrada_1.get().replace("(", "*("))
                 resoult = eval(self.calculator.entrada_1.get())
                 self.calculator.entrada_2.set(resoult)
                 self.calculator.entrada_1.set("")
+                operation_cont = 0
             except SyntaxError:
                 self.calculator.entrada_2.set("Error")
                 self.calculator.entrada_1.set("")
@@ -143,7 +154,7 @@ class Operation:
         except ZeroDivisionError:
             self.calculator.entrada_2.set("Error")
             self.calculator.entrada_1.set("")
-            self.button_state.inactive_buttons()  
+            self.button_state.inactive_buttons()
 
     def del_button(self):
         self.calculator.entrada_2.set(self.calculator.entrada_2.get()[self.start:self.end - 1])
