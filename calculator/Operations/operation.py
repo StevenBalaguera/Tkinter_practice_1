@@ -90,6 +90,10 @@ class Operation:
                     close_bracket_counter += 1  
 
             self.brackets_eval(open_bracket_counter, close_bracket_counter) 
+
+            #   cuando das al = el valor de la entrada 2 pasa a la entrada 1.
+            #       se opera y el resultado se almacena en la entrada 2 
+            
             try: 
                 for character in range(0, len(self.calculator.entrada_1.get())):
                     if self.calculator.entrada_1.get()[character] == "+":
@@ -102,24 +106,21 @@ class Operation:
                         operation_cont += 1
                 if operation_cont == 0:
                     self.calculator.entrada_1.set(self.calculator.entrada_1.get().replace("(", "*("))
+                # corrigiendo errores esta linea esta fumadisima pero funciona :v
+                else:
+                    self.calculator.entrada_1.set(self.calculator.entrada_1.get().replace("(", ""))
+                    self.calculator.entrada_1.set(self.calculator.entrada_1.get().replace(")", ""))
                 resoult = eval(self.calculator.entrada_1.get())
                 self.calculator.entrada_2.set(resoult)
                 self.calculator.entrada_1.set("")
                 operation_cont = 0
-            except SyntaxError:
+            except:
                 self.calculator.entrada_2.set("Error")
                 self.calculator.entrada_1.set("")
                 self.button_state.inactive_buttons()
-            except ZeroDivisionError:
-                self.calculator.entrada_2.set("Error")
-                self.calculator.entrada_1.set("")
-                self.button_state.inactive_buttons()
-            except NameError:
-                self.calculator.entrada_2.set("Error")
-                self.calculator.entrada_1.set("")
-                self.button_state.inactive_buttons()
+           
 
-            if self.calculator.entrada_2.get().isdigit() == False:
+            if not self.calculator.entrada_2.get().isdigit():
                 self.button_state.inactive_point_button()
 
             elif self.calculator.entrada_2.get().isdigit():
@@ -136,22 +137,7 @@ class Operation:
             self.calculator.entrada_2.set(resoult)
             self.calculator.entrada_1.set("")
 
-        except ValueError:
-            self.calculator.entrada_2.set("Error")
-            self.calculator.entrada_1.set("")
-            self.button_state.inactive_buttons()
-
-        except TypeError:
-            self.calculator.entrada_2.set("Error")
-            self.calculator.entrada_1.set("")
-            self.button_state.inactive_buttons()  
-
-        except SyntaxError:
-            self.calculator.entrada_2.set("Error")
-            self.calculator.entrada_1.set("")
-            self.button_state.inactive_buttons()  
-
-        except ZeroDivisionError:
+        except:
             self.calculator.entrada_2.set("Error")
             self.calculator.entrada_1.set("")
             self.button_state.inactive_buttons()
